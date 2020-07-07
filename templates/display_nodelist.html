@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}Node List{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  <h1>Node List</h1>
+  <p> Run "Download branding" first to download all the current brandingfolders from each separate pexip node.
+  Then run "Upload branding" to restore branding to all nodes</p>
+  <p>Script might take 2-3 minutes to finish after clicking</p>
+<form method="post" action="/brandingdownload">
+  <div class="form-group">
+	  <input class="btn btn-primary" type="submit" value="Download branding">
+  </div>
+</form>
+<form method="post" action="/brandingupload">
+  <div class="form-group">
+	  <input class="btn btn-primary" type="submit" value="Upload branding">
+  </div>
+</form>
+
+<p>Number of nodes: {{ numberOfNodes }}</p>
+  
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Node name</th>
+			<th>FQDN</th>
+			<th>Local IP</th>
+			<th>Public IP</th>
+			<th>Downloadstatus ({{ lastDownloadDate }})</th>
+			<th>Uploadstatus ({{ lastUploadDate }})</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for node in backupStatusList[:-1] %}
+		<tr>
+			<td>{{ node["name"] }}</td>
+			<td>{{ node["alternative_fqdn"] }}</td>
+			<td>{{ node["address"] }}</td>
+			<td>{{ node["static_nat_address"] }}</td>
+			{% if 'OK' in node["downloadstatus"] %}
+			<td style="color: green;">{{ node["downloadstatus"] }}</td>
+			{% else %}
+			<td style="color: red;">{{ node["downloadstatus"] }}</td>
+			{% endif %}
+			
+			{% if 'OK' in node["uploadstatus"] %}
+			<td style="color: green;">{{ node["uploadstatus"] }}</td>
+			{% else %}
+			<td style="color: red;">{{ node["uploadstatus"] }}</td>
+			{% endif %}
+			
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+	
+{% endblock %}
+
+

@@ -1,0 +1,20 @@
+#Script laget av Christian Gjerdingen
+#Oppdatert sist 01.06.2020
+
+
+Dette scriptet bruker Flask som webserver og Fabric for å automatisere download og upload av WebRTC branding på Pexip noder.
+Scriptet bruker API på pexip management noden - https://docs.pexip.com/api_manage/api_configuration.htm
+Scriptet henter info om alle noder, skiller ut IP adressen og bruker Fabric for å koble til hver enkelt node med SFTP.
+Fabric laster ned branding som ligger på /opt/pexip/share/web/static/app/configuration og lagrer folderen lokalt.
+Ved upload kjører fabric gjennom hver enkelt folder som har FQDN navn til noden og legger inn branding på samme sted.#Ved upload kjører fabric gjennom hver enkelt folder som har FQDN navn til noden og legger inn branding på samme sted.
+
+
+For å starte scriptet fra CLI må du først åpne riktig virtualenv:
+source /home/hcsadmin/bin/bbscript_venv/bin/activate
+
+
+Deretter bruk disse kommandoene fra denne folderen:
+
+set FLASK_APP=init.py
+flask run -h 91.184.140.30 -p 8200
+

@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-sketchy.css">
+    <link rel="stylesheet" href="/static/css/site.css">
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="content" style="text-align:center;">{% block content %}{% endblock %}</div>
+  </body>
+  <!--<div class="footer">
+	  {% block footer %}
+	  <p>Footer bitch</p>
+	  {% endblock %}
+  </div>-->
+</html>

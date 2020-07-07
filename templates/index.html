@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %} 
+    <h1>Pexip branding backup</h1>
+  <form method="get" action="/brandingbackup">
+	  <div class="form-group">
+		  <input class="btn btn-primary" type="submit" value="submit">
+	  </div>
+  </form>
+{% endblock %}
